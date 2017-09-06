@@ -1,0 +1,34 @@
+version: "3"
+
+services:
+  db:
+    container_name: mysql-standalone-lab
+    image: mysql:5.6
+    environment:
+      - MYSQL_ROOT_PASSWORD=dev
+      - MYSQL_DATABASE=lab
+      - MYSQL_USER=test
+      - MYSQL_PASSWORD=test
+    ports:
+      - "3306:3306"
+    hostname: mysql.lab
+    networks:
+      lab_net:
+        ipv4_address: 172.16.236.2
+  cache:
+    container_name: redis-standalone-lab
+    image: redis:3.2
+    ports:
+      - "6379:6379"
+    hostname: redis.lab
+    networks:
+      lab_net:
+        ipv4_address: 172.16.236.3
+
+networks:
+  lab_net:
+    driver: bridge
+    ipam:
+      driver: default
+      config:
+        - subnet: 172.16.236.0/24

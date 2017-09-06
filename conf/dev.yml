@@ -1,0 +1,16 @@
+log:
+  formatter: text
+  level: debug
+db:
+  name: lab
+  address: 127.0.0.1
+  port: 3306
+  username: test
+  password: test
+  debug: true
+cache:
+  name: lab
+  address: 127.0.0.1
+  port: 6379
+  username: test
+  password: test
