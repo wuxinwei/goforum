@@ -10,6 +10,7 @@ import (
 	"github.com/wuxinwei/goforum/middleware"
 	"github.com/wuxinwei/goforum/models"
 	"github.com/wuxinwei/goforum/utils"
+	"golang.org/x/crypto/bcrypt"
 )
 
 // UserController the controller part of MVC patter
@@ -32,7 +33,7 @@ func (c *UserController) RegisterRoutes(app *gopress.App) {
 	app.GET("/", c.CreateRender("user/login"))
 	app.GET("/user", c.CreateRender("user/login"))
 	app.GET("/user/login", c.CreateRender("user/login"))
-	app.POST("/user/login", c.Login, middleware.CipherPassword())
+	app.POST("/user/login", c.Login)
 	app.GET("/user/register", c.CreateRender("user/register"))
 	app.POST("/user/register", c.Register, middleware.CipherPassword())
 	app.GET("/user/profile", c.Profile, middleware.Auth())
@@ -58,21 +59,27 @@ func (c *UserController) Login(ctx gopress.Context) error {
 			"error": err.Error(),
 		})
 	}
+	rawPw := user.Password
 	db, err := utils.GetDB(c.app)
 	if err != nil {
-		return ctx.Render(http.StatusBadRequest, "errors/500", map[string]interface{}{
+		return ctx.Render(http.StatusInternalServerError, "errors/500", map[string]interface{}{
 			"error": err.Error(),
 		})
 	}
 
 	// TODO, 登录后需要保存 session 信息, 之后所有大部分读取操作均从 redis 中读取
-	if err := db.Where("username = ? AND password = ?", user.UserName, user.Password).First(&user).Error; err != nil {
+	if err := db.Where("username = ?", user.UserName).First(&user).Error; err != nil {
 		if err == gorm.ErrRecordNotFound {
-			return ctx.Render(http.StatusInternalServerError, "user/login", nil)
+			// TODO: 增加无效信息
+			return ctx.Render(http.StatusBadRequest, "user/login", nil)
 		}
-		return ctx.Render(http.StatusBadRequest, "errors/500", map[string]interface{}{
+		return ctx.Render(http.StatusInternalServerError, "errors/500", map[string]interface{}{
 			"error": err.Error(),
 		})
+	}
+	if err := bcrypt.CompareHashAndPassword([]byte(user.Password), []byte(rawPw)); err != nil {
+		// TODO: 增加无效提示信息
+		return ctx.Render(http.StatusBadRequest, "user/login", nil)
 	}
 	// TODO: redirect 需要重新考虑
 	return ctx.Redirect(http.StatusPermanentRedirect, "https://127.0.0.1:8080/posts")
