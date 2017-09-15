@@ -14,3 +14,9 @@ cache:
   port: 6379
   username: test
   password: test
+elastic:
+  name: lab
+  address: 127.0.0.1
+  port: 9200
+  username: elastic
+  password: elasticpw

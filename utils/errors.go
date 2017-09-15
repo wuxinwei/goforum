@@ -1,12 +1,12 @@
-package controllers
+package utils
 
-func errInternal(err error) map[string]interface{} {
+func ErrInternal(err error) map[string]interface{} {
 	return map[string]interface{}{
 		"error": err.Error(),
 	}
 }
 
-func errRequest(err error) map[string]interface{} {
+func ErrRequest(err error) map[string]interface{} {
 	return map[string]interface{}{
 		"error": err.Error(),
 	}

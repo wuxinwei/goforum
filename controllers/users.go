@@ -8,6 +8,7 @@ import (
 	"github.com/gorilla/sessions"
 	"github.com/jinzhu/gorm"
 	"github.com/labstack/echo-contrib/session"
+	"github.com/wuxinwei/goforum/conf"
 	"github.com/wuxinwei/goforum/middleware"
 	"github.com/wuxinwei/goforum/models"
 	"github.com/wuxinwei/goforum/utils"
@@ -33,7 +34,7 @@ func (c *UserController) RegisterRoutes(app *gopress.App) {
 		return ctx.Render(http.StatusOK, "errors/500", nil)
 	})
 
-	app.POST("/user/login", c.Login)
+	app.POST("/user/login", c.Login, middleware.StoreSession(app.Logger))
 	app.POST("/user/logout", func(ctx gopress.Context) error {
 		return ctx.Redirect(http.StatusPermanentRedirect, "http://localhost:3000/")
 	})
@@ -47,7 +48,7 @@ func (c *UserController) RegisterRoutes(app *gopress.App) {
 
 // Login Action
 func (c *UserController) Login(ctx gopress.Context) error {
-	sess, err := session.Get("session_id", ctx)
+	sess, err := session.Get(string(conf.SessionSecret), ctx)
 	if err != nil {
 		c.app.Logger.Errorf("Get session failed: %s", err)
 	}

@@ -1,10 +1,13 @@
 package conf
 
 import (
+	"encoding/gob"
 	"log"
+	"os"
 
 	"github.com/sirupsen/logrus"
 	"github.com/spf13/viper"
+	"github.com/wuxinwei/goforum/models"
 )
 
 // LogLevel is a map to provide a mapping relation
@@ -40,13 +43,23 @@ type ServerConf struct {
 		Username string `mapstructure:"username"`
 		Password string `mapstructure:"password"`
 	} `mapstructure:"cache"`
+	Elastic struct {
+		Name     string `mapstructure:"name"`
+		Address  string `mapstructure:"address"`
+		Port     int    `mapstructure:"port"`
+		Username string `mapstructure:"username"`
+		Password string `mapstructure:"password"`
+	} `mapstructure:"elastic"`
 }
 
-var GlobalConf ServerConf
+var (
+	GlobalConf    ServerConf
+	SessionSecret = []byte("secret")
+)
 
 func init() {
 	// read conf
-	viper.AddConfigPath("./conf")
+	viper.AddConfigPath(os.Getenv("HOME"))
 	viper.SetConfigName("dev")
 	viper.SetConfigType("yaml")
 	// log default value
@@ -65,6 +78,12 @@ func init() {
 	viper.SetDefault("cache.port", 6379)
 	viper.SetDefault("cache.username", "test")
 	viper.SetDefault("cache.password", "test")
+	// elastic default value
+	viper.SetDefault("elastic.name", "lab")
+	viper.SetDefault("elastic.address", "127.0.0.1")
+	viper.SetDefault("elastic.port", 9200)
+	viper.SetDefault("elastic.username", "elastic")
+	viper.SetDefault("elastic.password", "elasticpw")
 
 	if err := viper.ReadInConfig(); err != nil {
 		log.Fatalf("Read configuration file failed, Err: %s", err)
@@ -80,10 +99,15 @@ func init() {
 		logrus.SetLevel(logLevel)
 	}
 
-	// TODO: 是否需要做检查
 	if GlobalConf.Log.Formatter == "text" {
 		logrus.SetFormatter(&logrus.TextFormatter{})
 	} else {
 		logrus.SetFormatter(&logrus.JSONFormatter{})
 	}
+
+	// register gob type
+	gob.Register(&models.User{})
+	gob.Register(&models.Post{})
+	gob.Register(&models.Comment{})
+	gob.Register(&models.Tag{})
 }

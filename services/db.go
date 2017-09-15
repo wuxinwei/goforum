@@ -50,8 +50,8 @@ func NewDbService() *DbService {
 	db.AutoMigrate(&models.User{}, &models.Post{}, &models.Tag{}, &models.Comment{})
 	db.Model(&models.User{}).Related(&models.Post{})
 	db.Model(&models.User{}).Related(&models.Comment{})
-	//db.Model(&models.Post{}).Related(&models.Comment{})
-	//db.Model(&models.Post{}).Related(&models.Tag{})
+	db.Model(&models.Post{}).Related(&models.Comment{})
+	db.Model(&models.Post{}).Related(&models.Tag{})
 	return &DbService{
 		db,
 	}
