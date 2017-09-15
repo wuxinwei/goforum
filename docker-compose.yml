@@ -56,6 +56,21 @@ services:
     networks:
       lab_net:
         ipv4_address: 172.16.236.5
+  rabbitmq:
+    container_name: mq-with-dashboard
+    image: rabbitmq:3.6.12-management
+    hostname: mq.lab
+    environment:
+      - RABBITMQ_DEFAULT_USER=user-mq
+      - RABBITMQ_DEFAULT_PASS=user-pw
+    ports:
+      - "15672:15672"
+      - "5672:5672"
+    extra_hosts:
+      - "es.lab:172.16.236.4"
+    networks:
+      lab_net:
+        ipv4_address: 172.16.236.6
 
 networks:
   lab_net:

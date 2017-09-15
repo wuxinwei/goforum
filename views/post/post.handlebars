@@ -1,2 +1,55 @@
-<!-- template: posts/article -->
-<div>This is template posts/article</div>
+<!-- template: post/post -->
+<head>
+    <meta charset="UTF-8">
+    <link href="/static/css/post/post.css" rel="stylesheet"/>
+    <script type="text/javascript" charset="UTF-8" src="/static/js/post/post.js"></script>
+    <title> GoForum </title>
+</head>
+
+{{> header}}
+
+<body style="background-color:#F0F0F0;  background-attachment: fixed;">
+<link href="http://ironsummitmedia.github.io/startbootstrap-modern-business/font-awesome/css/font-awesome.min.css"
+      rel="stylesheet"/>
+<link href="/static/css/post/post.css" rel="stylesheet"/>
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-3">
+        </div>
+        <div class="col-md-6"><br><br><br>
+            <div class="panel panel-default">
+                <div class="panel-body">
+                    <div class="pull-left media">
+                        <img class="img-responsive"
+                             src="https://cdn1.iconfinder.com/data/icons/toolbar-signs/512/person-512.png" alt="...">
+                    </div>
+                    <div class="pull-right"><br>
+                        <b><a href="https://www.facebook.com/DLZYagiz"> {{author}} </a></b>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                    <center><h4> {{title}} </h4></center>
+                    <hr>
+                    <p> {{content}}
+                    <hr>
+                    <div class="pull-left">
+                        <a><b> Created Date: {{createdAt}} </b></a>  <a><b>Updated Date: {{updatedAt}}</b></a>
+                    </div>
+                    <div class="pull-right">
+                        <a href="https://www.facebook.com/DLZYagiz"><i class="fa fa-2x fa fa-facebook-square"></i></a>  
+                        <a><i class="fa fa-2x fa fa-google-plus-square"></i></a>  
+                        <a><i class="fa fa-2x fa fa-twitter-square"></i></a>  
+                    </div>
+                    </p>
+                </div>
+            </div>
+            <div class="col-md-3">
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+
+{{> footer }}

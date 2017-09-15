@@ -1,0 +1,65 @@
+<!-- template: post/list -->
+<head>
+    <meta charset="UTF-8">
+    {{!-- CSS --}}
+    <link rel="stylesheet" href="/static/css/post/list.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta/css/bootstrap.min.css" integrity="sha384-/Y6pD6FV/Vv2HJnA6t+vslU6fwYXjCFtcEpHbNJ0lyAFsXTsjBbfaDjzALeQsN6M" crossorigin="anonymous">
+
+    {{!-- JS --}}
+    <script src="https://ajax.aspnetcdn.com/ajax/jQuery/jquery-3.2.1.min.js" charset="UTF-8"></script>
+    <script src="/static/js/post/list.js" type="text/javascript" charset="UTF-8"></script>
+
+    <title> GoForum </title>
+</head>
+
+<div class="main">
+    {{> header }}
+    <div class="posts">
+        <!-- navigation bar-->
+        <div class="navigate-bar">
+            <ul> Navigation
+                <li> Distract 1</li>
+                <li> Distract 2</li>
+                <li> Distract 3</li>
+                <li> Distract 4</li>
+                <li> Distract 5</li>
+            </ul>
+        </div>
+
+        <!-- post list -->
+        <div class="post-list">
+            <table class="post-table">
+                <thead class="post-table-header">
+                <tr class="post-item-header">
+                    <th class="icon header">Icon</th>
+                    <th class="title header">Title</th>
+                    <th class="author header">Author</th>
+                    <th class="views header">Views/Replies</th>
+                    <th class="updated-time header">Update Time</th>
+                </tr>
+                </thead>
+                <tbody class="post-table-body">
+                <!--{{#each posts}}-->
+                <tr class="post-item">
+                    <td class="icon">{{Icon}}</td>
+                    <td class="title">{{title}}</td>
+                    <td class="author">
+                        <div>{{author}}</div>
+                        <div>{{createdAt}}</div>
+                    </td>
+                    <td class="views">{{views}} / {{replies}}</td>
+                    >
+                    <td class="updated time">{{updatedAt}}</td>
+                </tr>
+                        <!--{{/each}}-->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- 页码 -->
+        <div id="pagination" class="pagination">
+        </div>
+    </div>
+    {{> footer }}
+</div>
+

@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../static/js/post/list.js"],"names":["$","getScript"],"mappings":";;AAAAA,EAAEC,SAAF,CAAY,gCAAZ","file":"list.js","sourcesContent":["$.getScript('/static/js/_partials/header.js');\n"]}

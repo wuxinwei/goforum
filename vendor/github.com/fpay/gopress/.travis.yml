@@ -1,0 +1,16 @@
+language: go
+
+go:
+  - 1.9.x
+  - master
+
+install:
+  - go get -u github.com/labstack/echo
+  - go get -u github.com/aymerick/raymond
+  - go get -u github.com/sirupsen/logrus
+
+script:
+  - make test
+
+after_success:
+  - bash <(curl -s https://codecov.io/bash) -f coverage.out
