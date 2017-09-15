@@ -1,0 +1,131 @@
+hash: dffe55db139834085f29d3a45fd5eec474d66eb3adc6c409b2ff3adaff5b1ee3
+updated: 2017-09-15T21:43:03.745398213+08:00
+imports:
+- name: github.com/aymerick/raymond
+  version: a2232af10b53ef1ae5a767f5178db3a6c1dab655
+  subpackages:
+  - ast
+  - lexer
+  - parser
+- name: github.com/dgrijalva/jwt-go
+  version: a539ee1a749a2b895533f979515ac7e6e0f5b650
+- name: github.com/fatih/structs
+  version: 7e5a8eef611ee84dd359503f3969f80df4c50723
+- name: github.com/fpay/gopress
+  version: b1d49655b6699d11bf6889fb7170275662a0307d
+- name: github.com/fsnotify/fsnotify
+  version: 4da3e2cfbabc9f751898f250b49f2439785783a1
+- name: github.com/garyburd/redigo
+  version: 70e1b1943d4fc9c56791abaa6f4d1e727b9ab925
+  subpackages:
+  - internal
+  - redis
+- name: github.com/go-sql-driver/mysql
+  version: 1548d61ac1b48a30add201183a992009bc02af20
+- name: github.com/gorilla/context
+  version: 08b5f424b9271eedf6f9f0ce86cb9396ed337a42
+- name: github.com/gorilla/securecookie
+  version: e59506cc896acb7f7bf732d4fdf5e25f7ccd8983
+- name: github.com/gorilla/sessions
+  version: b61c93cb7f67533c8bfbb5ea450efc07e5833c5e
+- name: github.com/hashicorp/hcl
+  version: 68e816d1c783414e79bc65b3994d9ab6b0a722ab
+  subpackages:
+  - hcl/ast
+  - hcl/parser
+  - hcl/scanner
+  - hcl/strconv
+  - hcl/token
+  - json/parser
+  - json/scanner
+  - json/token
+- name: github.com/jinzhu/gorm
+  version: 5174cc5c242a728b435ea2be8a2f7f998e15429b
+  subpackages:
+  - dialects/mysql
+- name: github.com/jinzhu/inflection
+  version: 1c35d901db3da928c72a72d8458480cc9ade058f
+- name: github.com/labstack/echo
+  version: cec7629194fe4bf83b0c72d9a02d340c7a1468ac
+  subpackages:
+  - middleware
+- name: github.com/labstack/echo-contrib
+  version: c43bc4a1577d32bc1c485cb435aedf3e19d1bf14
+  subpackages:
+  - session
+- name: github.com/labstack/gommon
+  version: 1121fd3e243c202482226a7afe4dcd07ffc4139a
+  subpackages:
+  - bytes
+  - color
+  - log
+  - random
+- name: github.com/magiconair/properties
+  version: 8d7837e64d3c1ee4e54a880c5a920ab4316fc90a
+- name: github.com/mattn/go-colorable
+  version: 941b50ebc6efddf4c41c8e4537a5f68a4e686b24
+- name: github.com/mattn/go-isatty
+  version: fc9e8d8ef48496124e79ae0df75490096eccf6fe
+- name: github.com/mitchellh/mapstructure
+  version: d0303fe809921458f417bcf828397a65db30a7e4
+- name: github.com/pelletier/go-toml
+  version: 1d6b12b7cb290426e27e6b4e38b89fcda3aeef03
+- name: github.com/pkg/errors
+  version: 2b3a18b5f0fb6b4f9190549597d3f962c02bc5eb
+- name: github.com/sirupsen/logrus
+  version: f006c2ac4710855cf0f916dd6b77acf6b048dc6e
+- name: github.com/spf13/afero
+  version: ee1bd8ee15a1306d1f9201acc41ef39cd9f99a1b
+  subpackages:
+  - mem
+- name: github.com/spf13/cast
+  version: acbeb36b902d72a7a4c18e8f3241075e7ab763e4
+- name: github.com/spf13/jwalterweatherman
+  version: 12bd96e66386c1960ab0f74ced1362f66f552f7b
+- name: github.com/spf13/pflag
+  version: 7aff26db30c1be810f9de5038ec5ef96ac41fd7c
+- name: github.com/spf13/viper
+  version: 25b30aa063fc18e48662b86996252eabdcf2f0c7
+- name: github.com/valyala/bytebufferpool
+  version: e746df99fe4a3986f4d4f79e13c1e0117ce9c2f7
+- name: github.com/valyala/fasttemplate
+  version: dcecefd839c4193db0d35b88ec65b4c12d360ab0
+- name: golang.org/x/crypto
+  version: faadfbdc035307d901e69eea569f5dda451a3ee3
+  subpackages:
+  - acme
+  - acme/autocert
+  - bcrypt
+  - blowfish
+  - ssh/terminal
+- name: golang.org/x/sys
+  version: 062cd7e4e68206d8bab9b18396626e855c992658
+  subpackages:
+  - unix
+  - windows
+- name: golang.org/x/text
+  version: 1cbadb444a806fd9430d14ad08967ed91da4fa0a
+  subpackages:
+  - transform
+  - unicode/norm
+- name: gopkg.in/asaskevich/govalidator.v4
+  version: 7664702784775e51966f0885f5cd27435916517b
+- name: gopkg.in/boj/redistore.v1
+  version: fc113767cd6b051980f260d6dbe84b2740c46ab0
+- name: gopkg.in/olivere/elastic.v5
+  version: edbef41beaacc2ee95e61af8faff04e67c01e268
+  subpackages:
+  - config
+  - uritemplates
+- name: gopkg.in/yaml.v2
+  version: eb3733d160e74a9c7e442f435eb3bea458e1d19f
+testImports:
+- name: github.com/brianvoe/gofakeit
+  version: 306627f4ba0627fa34c60a6fd2b6b8053f8afaaa
+- name: github.com/google/go-cmp
+  version: d5735f74713c51f7450a43d0a98d41ce2c1db3cb
+  subpackages:
+  - cmp
+  - cmp/internal/diff
+  - cmp/internal/function
+  - cmp/internal/value

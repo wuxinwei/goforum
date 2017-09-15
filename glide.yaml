@@ -1,0 +1,29 @@
+package: github.com/wuxinwei/goforum
+import:
+- package: github.com/fatih/structs
+- package: github.com/fpay/gopress
+- package: github.com/garyburd/redigo
+  subpackages:
+  - redis
+- package: github.com/gorilla/sessions
+- package: github.com/jinzhu/gorm
+  subpackages:
+  - dialects/mysql
+- package: github.com/labstack/echo
+- package: github.com/labstack/echo-contrib
+  subpackages:
+  - session
+- package: github.com/labstack/gommon
+  subpackages:
+  - log
+- package: github.com/sirupsen/logrus
+- package: github.com/spf13/viper
+- package: golang.org/x/crypto/bcrypt
+- package: gopkg.in/asaskevich/govalidator.v4
+- package: gopkg.in/boj/redistore.v1
+- package: gopkg.in/olivere/elastic.v5
+testImport:
+- package: github.com/brianvoe/gofakeit
+- package: github.com/google/go-cmp
+  subpackages:
+  - cmp
