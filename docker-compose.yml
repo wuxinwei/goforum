@@ -24,6 +24,38 @@ services:
     networks:
       lab_net:
         ipv4_address: 172.16.236.3
+  elastic:
+    container_name: es-standalone-lab
+    image: elasticsearch:5.6
+    volumes:
+      - $PWD/demo/es/config/elasticsearch.yml:/usr/share/elasticsearch/config/elasticsearch.yml
+    environment:
+      - ES_JAVA_OPTS=-Xms512m -Xmx512m
+    ports:
+      - "9200:9200"
+      - "9300:9300"
+    hostname: es.lab
+    extra_hosts:
+      - "kibana.lab:172.16.236.5"
+    networks:
+      lab_net:
+        ipv4_address: 172.16.236.4
+  kibana:
+    container_name: kibana-lab
+    image: kibana:5.6
+    hostname: kibana.lab
+    volumes:
+      - $PWD/demo/kibana/config/kibana.yml:/usr/share/kibana/config/kibana.yml
+    environment:
+      - ELASTICSEARCH_USERNAME=elastic
+      - ELASTICSEARCH_PASSWORD=elasticpw
+    ports:
+      - "5601:5601"
+    extra_hosts:
+      - "es.lab:172.16.236.4"
+    networks:
+      lab_net:
+        ipv4_address: 172.16.236.5
 
 networks:
   lab_net:

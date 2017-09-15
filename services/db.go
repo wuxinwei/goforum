@@ -28,7 +28,6 @@ type Pair struct {
 
 // DbService type
 type DbService struct {
-	// Uncomment this line if this service has dependence on other services in the container
 	// c  *gopress.Container
 	*gorm.DB
 }
@@ -47,10 +46,12 @@ func NewDbService() *DbService {
 		logrus.Errorf("mysql connection failed, address: %s, Err: %s", addr, err)
 		return nil
 	}
-
-	// db init
 	db.LogMode(conf.GlobalConf.DB.Debug)
-	db.AutoMigrate(&models.User{}, &models.Post{}, &models.Comment{})
+	db.AutoMigrate(&models.User{}, &models.Post{}, &models.Tag{}, &models.Comment{})
+	db.Model(&models.User{}).Related(&models.Post{})
+	db.Model(&models.User{}).Related(&models.Comment{})
+	//db.Model(&models.Post{}).Related(&models.Comment{})
+	//db.Model(&models.Post{}).Related(&models.Tag{})
 	return &DbService{
 		db,
 	}

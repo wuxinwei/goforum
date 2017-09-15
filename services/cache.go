@@ -9,6 +9,7 @@ import (
 
 	"github.com/fpay/gopress"
 	"github.com/garyburd/redigo/redis"
+	redistore "gopkg.in/boj/redistore.v1"
 )
 
 const (
@@ -63,6 +64,11 @@ func NewCacheService() *CacheService {
 	return &CacheService{
 		cachePool: p,
 	}
+}
+
+// SessionStore return a instance of session store for middleware
+func (s *CacheService) SessionStore(keyPairs ...[]byte) (*redistore.RediStore, error) {
+	return redistore.NewRediStoreWithPool(s.cachePool, keyPairs...)
 }
 
 // ServiceName is used to implements gopress.Service
